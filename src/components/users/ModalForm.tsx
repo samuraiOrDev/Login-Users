@@ -8,7 +8,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { UserForm } from ".";
-
 export const ModalForm = () => {
   const { onClose } = useDisclosure();
   return (

@@ -1,6 +1,6 @@
 import { FC, useReducer, useState } from "react";
-import { AuthContext } from "./AuthContext";
-import { User, usersReducer } from "./AuthRedurcer";
+import { UsersContext } from "./UsersContext";
+import { User, usersReducer } from "./UsersRedurcer";
 
 const initialUserForm = {
   username: "",
@@ -24,7 +24,7 @@ const initialUsers: User[] = [
 interface Props {
   children: React.ReactNode;
 }
-export const AuthProvider: FC<Props> = ({ children }) => {
+export const UsersProvider: FC<Props> = ({ children }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
   const [users, dispatch] = useReducer(usersReducer, initialUsers);
@@ -89,7 +89,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     console.log(id);
   };
   return (
-    <AuthContext.Provider
+    <UsersContext.Provider
       value={{
         userForm,
         errorPassword,
@@ -106,6 +106,6 @@ export const AuthProvider: FC<Props> = ({ children }) => {
       }}
     >
       {children}
-    </AuthContext.Provider>
+    </UsersContext.Provider>
   );
 };

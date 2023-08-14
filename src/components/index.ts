@@ -1,3 +1,2 @@
-export * from "./UserForm";
-export * from "./UsersList";
-export * from "./ModalEdit";
+export * from "./users";
+export * from "./auth";

@@ -1,6 +1,6 @@
 import { Box, Button, Td, Tr } from "@chakra-ui/react";
 import { FC, useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { UsersContext } from "../../context/UsersContext";
 import { ModalEdit } from ".";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
   };
 }
 export const UserRow: FC<Props> = ({ user }) => {
-  const { handleDelete } = useContext(AuthContext);
+  const { handleDelete } = useContext(UsersContext);
   return (
     <>
       <Tr>

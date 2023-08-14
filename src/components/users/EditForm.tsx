@@ -8,7 +8,7 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import { FC, useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { UsersContext } from "../../context/UsersContext";
 interface Props {
   user: {
     id: number;
@@ -26,7 +26,7 @@ export const EditForm: FC<Props> = ({ user }) => {
   const [errorUsernameEdit, setErrorUsernameEdit] = useState(false);
   const [errorEmailEdit, setErrorEmailEdit] = useState(false);
   const { usernameEdit, emailEdit } = userFormEdit;
-  const { users, dispatch } = useContext(AuthContext);
+  const { users, dispatch } = useContext(UsersContext);
   const validateSchema = () => {
     let result = true;
     if (usernameEdit.length < 1) {

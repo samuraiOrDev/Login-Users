@@ -8,7 +8,7 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { UsersContext } from "../../context/UsersContext";
 
 export const UserForm = () => {
   const {
@@ -19,7 +19,7 @@ export const UserForm = () => {
     handleSubmit,
     onInputChange,
     setShowModal,
-  } = useContext(AuthContext);
+  } = useContext(UsersContext);
   return (
     <Box>
       <Heading as="h2" size="3xl" noOfLines={1} marginBottom={"40px"}>

@@ -12,7 +12,8 @@ import {
   Portal,
 } from "@chakra-ui/react";
 import { FC } from "react";
-import { EditForm } from "./EditForm";
+import { EditForm } from ".";
+
 interface Props {
   user: {
     id: number;

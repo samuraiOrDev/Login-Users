@@ -1,11 +1,10 @@
-import { Box, Button, Container, useColorMode } from "@chakra-ui/react";
-import { UsersList } from "./components";
+import { useColorMode, Container, Box, Button } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
-import { AuthContext } from "./context/AuthContext";
-import { ModalForm } from "./components/ModalForm";
+import { ModalForm, UsersList } from "../components";
+import { UsersContext } from "../context/UsersContext";
 
-function App() {
-  const { users, showModal, setShowModal } = useContext(AuthContext);
+export const UsersPage = () => {
+  const { users, showModal, setShowModal } = useContext(UsersContext);
   const { colorMode, toggleColorMode } = useColorMode();
   useEffect(() => {
     colorMode === "light" && toggleColorMode();
@@ -21,7 +20,6 @@ function App() {
       {showModal ? (
         <Box width={"100%"} marginTop={"40px"}>
           <ModalForm />
-
           <UsersList users={users} />
         </Box>
       ) : (
@@ -39,6 +37,4 @@ function App() {
       )}
     </Container>
   );
-}
-
-export default App;
+};

@@ -6,9 +6,9 @@ import {
   ThemeConfig,
   extendTheme,
 } from "@chakra-ui/react";
-import App from "./App.tsx";
-import { AuthProvider } from "./context/AuthProvider.tsx";
-
+import UsersApp from "./UsersApp.tsx";
+import { UsersProvider } from "./context/UsersProvider.tsx";
+import "./index.css";
 const config: ThemeConfig = {
   initialColorMode: "system",
   useSystemColorMode: true,
@@ -16,11 +16,11 @@ const config: ThemeConfig = {
 const theme = extendTheme({ config });
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <AuthProvider>
+    <UsersProvider>
       <ChakraProvider>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <App />
+        <UsersApp />
       </ChakraProvider>
-    </AuthProvider>
+    </UsersProvider>
   </React.StrictMode>
 );

@@ -1,6 +1,6 @@
-import { TypePayload } from "./AuthRedurcer";
+import { TypePayload } from "./UsersRedurcer";
 
-export interface TypeAuthContext {
+export interface TypeUsersContext {
   userForm: {
     username: string;
     password: string;
