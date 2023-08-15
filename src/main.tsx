@@ -9,6 +9,7 @@ import {
 import UsersApp from "./UsersApp.tsx";
 import { UsersProvider } from "./context/UsersProvider.tsx";
 import "./index.css";
+import { AuthProvider } from "./context/Auth/AuthProvider.tsx";
 const config: ThemeConfig = {
   initialColorMode: "system",
   useSystemColorMode: true,
@@ -16,11 +17,13 @@ const config: ThemeConfig = {
 const theme = extendTheme({ config });
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <UsersProvider>
-      <ChakraProvider>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <UsersApp />
-      </ChakraProvider>
-    </UsersProvider>
+    <AuthProvider>
+      <UsersProvider>
+        <ChakraProvider>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <UsersApp />
+        </ChakraProvider>
+      </UsersProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

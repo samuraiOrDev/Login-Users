@@ -5,3 +5,4 @@ export * from "./UserForm";
 export * from "./UserRow";
 export * from "./UsersList";
 export * from "./AlertSucess";
+export * from "../layout/NavBar";

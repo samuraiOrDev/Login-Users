@@ -14,70 +14,17 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FC, useState } from "react";
-import { TypeUserLogin } from "..";
+import useLoginPage from "../../../hooks/useLoginPage";
 
-const initialLoginForm = {
-  username: "",
-  password: "",
-};
-interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  dispach: React.Dispatch<any>;
-}
-export const LoginPage: FC<Props> = ({ dispach }) => {
+export const LoginPage = () => {
   const { onClose } = useDisclosure();
-  const [loginForm, setLoginForm] = useState(initialLoginForm);
-  const [errorLoginPassword, setErrorLoginPassword] = useState(false);
-  const [errorLoginUsername, setErrorLoginUsername] = useState(false);
-  const { username, password } = loginForm;
-  const handleLogin = (userLogin: TypeUserLogin) => {
-    const { username, password } = userLogin;
-    if (username === "admin" && password === "12345") {
-      const user = { username };
-      dispach({
-        type: "login",
-        payload: user,
-      });
-      sessionStorage.setItem(
-        "login",
-        JSON.stringify({
-          isAuth: true,
-          user,
-        })
-      );
-    } else {
-      alert("El usuario no presenta credenciales!!");
-    }
-  };
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setLoginForm({
-      ...loginForm,
-      [name]: value,
-    });
-  };
-  const validateSchema = () => {
-    let result = true;
-    if (username.length < 1) {
-      setErrorLoginUsername(true);
-      result = false;
-    }
-    if (password.length < 1) {
-      setErrorLoginPassword(true);
-      result = false;
-    }
-    return result;
-  };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (validateSchema()) {
-      handleLogin({ username, password });
-      setErrorLoginPassword(false);
-      setErrorLoginUsername(false);
-      setLoginForm(initialLoginForm);
-    }
-  };
+  const {
+    loginForm,
+    errorLoginPassword,
+    errorLoginUsername,
+    onInputChange,
+    handleSubmit,
+  } = useLoginPage();
   return (
     <Modal isOpen={true} onClose={onClose}>
       <ModalOverlay />

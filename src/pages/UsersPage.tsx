@@ -1,4 +1,4 @@
-import { useColorMode, Container, Box, Button } from "@chakra-ui/react";
+import { Container, Box, Button } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import { AlertSucess, ModalForm, UsersList } from "../components";
 import { UsersContext } from "../context/UsersContext";
@@ -13,9 +13,7 @@ export const UsersPage = () => {
     setShowAlertEditForm,
     showAlertEditForm,
   } = useContext(UsersContext);
-  const { colorMode, toggleColorMode } = useColorMode();
   useEffect(() => {
-    colorMode === "light" && toggleColorMode();
     if (showAlertUserForm) setTimeout(() => setShowAlertUserForm(false), 3000);
     if (showAlertEditForm) setTimeout(() => setShowAlertEditForm(false), 3000);
     // eslint-disable-next-line react-hooks/exhaustive-deps

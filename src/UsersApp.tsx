@@ -1,17 +1,33 @@
-import { useReducer } from "react";
-import { LoginPage, loginReducer } from "./components";
+import { useContext, useEffect } from "react";
+import { LoginPage, NavBar } from "./components";
 import { UsersPage } from "./pages/UsersPage";
-// import { UsersPage } from "./pages/UsersPage";
+import { useColorMode } from "@chakra-ui/react";
+import { AuthContext } from "./context/Auth/AuthContex";
 
-const initialLogin = sessionStorage.getItem("login")!
-  ? JSON.parse(sessionStorage.getItem("login")!)
-  : {
-      isAuth: false,
-      user: undefined,
-    };
+// import { UsersPage } from "./pages/UsersPage";
 function UsersApp() {
-  const [login, dispach] = useReducer(loginReducer, initialLogin);
-  return <>{login?.isAuth ? <UsersPage /> : <LoginPage dispach={dispach} />}</>;
+  const { colorMode, toggleColorMode } = useColorMode();
+  useEffect(() => {
+    colorMode === "light" && toggleColorMode();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const { login, handleLogOut } = useContext(AuthContext);
+  console.log(login);
+  return (
+    <>
+      {login?.isAuth ? (
+        <>
+          <NavBar
+            handleLogOut={handleLogOut}
+            userName={login.user?.username ? login.user?.username : "No name"}
+          />
+          <UsersPage />
+        </>
+      ) : (
+        <LoginPage />
+      )}
+    </>
+  );
 }
 
 export default UsersApp;

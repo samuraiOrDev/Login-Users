@@ -4,21 +4,13 @@ export interface TypeUserLogin {
 }
 
 export type TypeState =
-  | {
-      isAuth: boolean;
-      user: {
-        username: string;
-      };
-    }
+  | { isAuth: boolean; user: { username: string } }
   | {
       isAuth: boolean;
       user?: undefined;
     }
   | undefined;
 
-export type TypePayload = {
-  payload: {
-    username: string;
-  };
-  type: string;
-};
+export type TypePayload =
+  | { payload: { username: string }; type: string }
+  | { payload?: undefined; type: string };
