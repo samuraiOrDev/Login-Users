@@ -15,29 +15,27 @@ function UsersApp() {
   return (
     <Routes>
       {login?.isAuth ? (
-        <>
-          <Route
-            path="/users"
-            element={
-              <>
-                <NavBar
-                  handleLogOut={handleLogOut}
-                  userName={
-                    login.user?.username ? login.user?.username : "No name"
-                  }
-                />
-                <UsersPage />
-              </>
-            }
-          />
-          <Route path="/*" element={<Navigate to={"/users"} />} />
-        </>
+        <Route
+          path="/users"
+          element={
+            <>
+              <NavBar
+                handleLogOut={handleLogOut}
+                userName={
+                  login.user?.username ? login.user?.username : "No name"
+                }
+              />
+              <UsersPage />
+            </>
+          }
+        />
       ) : (
-        <>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/*" element={<Navigate to="/login" />} />
-        </>
+        <Route path="/login" element={<LoginPage />} />
       )}
+      <Route
+        path="/*"
+        element={<Navigate to={login?.isAuth ? "/users" : "/login"} />}
+      />
     </Routes>
   );
 }
