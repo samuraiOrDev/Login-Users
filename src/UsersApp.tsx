@@ -2,8 +2,8 @@ import { useContext, useEffect } from "react";
 import { useColorMode } from "@chakra-ui/react";
 import { AuthContext } from "./context/Auth/AuthContex";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { LoginPage } from "./components";
-import { UserRoutes } from "./routes/UserRoutes";
+import { LoginPage, NavBar } from "./components";
+import { UsersPage } from "./pages/UsersPage";
 // import { UsersPage } from "./pages/UsersPage";
 function UsersApp() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -15,15 +15,23 @@ function UsersApp() {
   return (
     <Routes>
       {login?.isAuth ? (
-        <Route
-          path="/*"
-          element={
-            <UserRoutes
-              handleLogOut={handleLogOut}
-              userName={login.user?.username ? login.user?.username : "No name"}
-            />
-          }
-        />
+        <>
+          <Route
+            path="/users"
+            element={
+              <>
+                <NavBar
+                  handleLogOut={handleLogOut}
+                  userName={
+                    login.user?.username ? login.user?.username : "No name"
+                  }
+                />
+                <UsersPage />
+              </>
+            }
+          />
+          <Route path="/*" element={<Navigate to={"/users"} />} />
+        </>
       ) : (
         <>
           <Route path="/login" element={<LoginPage />} />
