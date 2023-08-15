@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { useReducer } from "react";
 import { AuthContext } from "./AuthContex";
 import { TypeUserLogin, loginReducer } from "../../components";
+import { loginAuthService } from "../../components/auth/services/authService";
 interface Props {
   children: React.ReactNode;
 }
@@ -16,8 +17,10 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     sessionStorage.removeItem("login");
   };
   const handleLogin = (userLogin: TypeUserLogin) => {
-    const { username, password } = userLogin;
-    if (username === "admin" && password === "12345") {
+    const isLogin = loginAuthService(userLogin);
+
+    if (isLogin) {
+      const { username } = userLogin;
       const user = { username };
       dispach({
         type: "login",

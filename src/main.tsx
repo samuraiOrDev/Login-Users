@@ -14,16 +14,19 @@ const config: ThemeConfig = {
   initialColorMode: "system",
   useSystemColorMode: true,
 };
+import { BrowserRouter } from "react-router-dom";
 const theme = extendTheme({ config });
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>
-      <UsersProvider>
-        <ChakraProvider>
-          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-          <UsersApp />
-        </ChakraProvider>
-      </UsersProvider>
+      <BrowserRouter>
+        <UsersProvider>
+          <ChakraProvider>
+            <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+            <UsersApp />
+          </ChakraProvider>
+        </UsersProvider>
+      </BrowserRouter>
     </AuthProvider>
   </React.StrictMode>
 );
