@@ -26,7 +26,7 @@ export const EditForm: FC<Props> = ({ user }) => {
   const [errorUsernameEdit, setErrorUsernameEdit] = useState(false);
   const [errorEmailEdit, setErrorEmailEdit] = useState(false);
   const { usernameEdit, emailEdit } = userFormEdit;
-  const { users, dispatch } = useContext(UsersContext);
+  const { users, dispatch, setShowAlertEditForm } = useContext(UsersContext);
   const validateSchema = () => {
     let result = true;
     if (usernameEdit.length < 1) {
@@ -62,9 +62,11 @@ export const EditForm: FC<Props> = ({ user }) => {
       });
       dispatch({
         type: "updateUser",
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
         payload: newUsers,
       });
-      console.log(newUsers);
+      setShowAlertEditForm(true);
     }
   };
   return (

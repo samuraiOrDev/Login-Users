@@ -4,7 +4,7 @@ export interface User {
   password: string;
   email: string;
 }
-export type TypePayload = User | number | User[];
+export type TypePayload = User | number;
 
 export const usersReducer = (
   state: User[],

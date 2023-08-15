@@ -25,16 +25,17 @@ interface Props {
   children: React.ReactNode;
 }
 export const UsersProvider: FC<Props> = ({ children }) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
   const [users, dispatch] = useReducer(usersReducer, initialUsers);
   const [showModal, setShowModal] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
   const [IdUser, setIduser] = useState(users.length + 1);
   const [userForm, setUserForm] = useState(initialUserForm);
   const [errorUsername, setErrorUsernama] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const { username, password, email } = userForm;
+  const [showAlertUserForm, setShowAlertUserForm] = useState(false);
+  const [showAlertEditForm, setShowAlertEditForm] = useState(false);
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserForm({
@@ -64,12 +65,11 @@ export const UsersProvider: FC<Props> = ({ children }) => {
     if (validateSchema()) {
       setIduser((state: number) => state + 1);
       const newUser = { ...userForm, id: IdUser };
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
       dispatch({
         type: "addUser",
         payload: newUser,
       });
+      setShowAlertUserForm(true);
       setShowModal(false);
       setUserForm(initialUserForm);
       setErrorEmail(false);
@@ -78,8 +78,6 @@ export const UsersProvider: FC<Props> = ({ children }) => {
     }
   };
   const handleDelete = (id: number) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
     dispatch({
       type: "deleteUser",
       payload: id,
@@ -103,6 +101,12 @@ export const UsersProvider: FC<Props> = ({ children }) => {
         dispatch,
         showModal,
         setShowModal,
+        showAlertUserForm,
+        setShowAlertUserForm,
+        showAlertEditForm,
+        setShowAlertEditForm,
+        showModalEdit,
+        setShowModalEdit,
       }}
     >
       {children}

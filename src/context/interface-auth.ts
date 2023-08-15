@@ -25,4 +25,10 @@ export interface TypeUsersContext {
   }>;
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  showAlertUserForm: boolean;
+  setShowAlertUserForm: React.Dispatch<React.SetStateAction<boolean>>;
+  showAlertEditForm: boolean;
+  setShowAlertEditForm: React.Dispatch<React.SetStateAction<boolean>>;
+  showModalEdit: boolean;
+  setShowModalEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
